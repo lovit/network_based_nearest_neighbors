@@ -1,5 +1,8 @@
+import time
 import numpy as np
 from sklearn.metrics import pairwise_distances
+
+from .utils import most_closest_points
 
 class NetworkBasedNeighbors:
     def __init__(self, X=None, n_nearest_neighbors=5,
@@ -53,11 +56,11 @@ class NetworkBasedNeighbors:
 
         for step in range(max_steps):
             candi_idxs = np.unique(
-                np.concatenate([idxs, _get_neighbors(idxs)])
+                np.concatenate([idxs, self._get_neighbors(idxs)])
             )
 
             candi_dist = pairwise_distances(
-                query, index.X[candi_idxs]).reshape(-1)
+                query, self.X[candi_idxs]).reshape(-1)
 
             args = candi_dist.argsort()[:buffer_size]
             idxs_ = candi_idxs[args]
