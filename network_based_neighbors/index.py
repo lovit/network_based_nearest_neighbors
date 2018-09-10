@@ -49,7 +49,7 @@ class NetworkBasedNeighbors:
     def _search_neighbors_dev(self, query, k=5, max_steps=10, converge=0.000001):
         buffer_size = self.buffer_factor * k
         dist, idxs = self._initialize(query, buffer_size)
-        dist_sum = dist.sum()
+        dist_avg = dist.sum() / dist.shape[0]
 
         infos = []
         process_time = time.time()
@@ -65,17 +65,17 @@ class NetworkBasedNeighbors:
             args = candi_dist.argsort()[:buffer_size]
             idxs_ = candi_idxs[args]
             dist_ = candi_dist[args]
-            dist_sum_ = dist_.sum()
+            dist_avg_ = dist_.sum() / dist_.shape[0]
 
-            diff = dist_sum - dist_sum_
-            infos.append((step, dist_sum_, diff))
+            diff = dist_avg - dist_avg_
+            infos.append((step, dist_avg_, diff))
 
             if diff <= converge:
                 break
 
             dist = dist_
             idxs = idxs_
-            dist_sum = dist_sum_
+            dist_avg = dist_avg_
 
         process_time = time.time() - process_time
 
