@@ -62,3 +62,9 @@ Querying
 ### TODO
 
 현재 indexing 시간이 오래 걸리는 이유는 nearest neighbor graph 를 만들기 위하여 brute-force 로 모든 pairwise distance 를 계산하기 때문입니다. 이 부분은 NN-descent 와 같은 더 빠른 nearest neighbor graph constructor 로 대체해야 합니다.
+
+### Read more
+
+이 알고리즘의 작동 원리 및 구현 과정에 대한 내용을 [블로그 포스트][post]에 적어두었습니다.
+
+[post]: https://lovit.github.io/machine%20learning/vector%20indexing/2018/09/10/network_based_nearest_neighbors/
