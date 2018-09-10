@@ -1,5 +1,6 @@
 import numpy as np
 import time
+from sklearn.metrics import pairwise_distances
 
 def most_closest_points(X, Y=None, metric='euclidean',
     topk=5, batch_size=500, verbose=False):
