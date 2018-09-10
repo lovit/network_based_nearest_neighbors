@@ -29,6 +29,7 @@ class NetworkBasedNeighbors:
         _, self.nn = most_closest_points(
             X, topk=num_nn+1, batch_size=self.batch_size,
             verbose=self.verbose)
+        self.nn = self.nn[:,1:]
 
         # random neighbor indexing
         self.rn = np.random.randint(n_data, size=(n_data, num_rn))
