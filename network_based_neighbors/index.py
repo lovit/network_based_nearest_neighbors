@@ -1,6 +1,5 @@
 import numpy as np
 from sklearn.metrics import pairwise_distances
-from .utils import most_closest_points
 
 class NetworkBasedNeighbors:
     def __init__(self, X=None, n_nearest_neighbors=5,
@@ -18,6 +17,9 @@ class NetworkBasedNeighbors:
         n_data = X.shape[0]
         num_nn = self.n_nearest_neighbors
         num_rn = self.n_random_neighbors
+
+        # set reference data
+        self.X = X
 
         if self.verbose:
             print('Indexing ...')
