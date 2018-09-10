@@ -58,3 +58,7 @@ Querying
     k = 10
 
     index.search_neighbors(query, k=k) # query: a row vector
+
+### TODO
+
+현재 indexing 시간이 오래 걸리는 이유는 nearest neighbor graph 를 만들기 위하여 brute-force 로 모든 pairwise distance 를 계산하기 때문입니다. 이 부분은 NN-descent 와 같은 더 빠른 nearest neighbor graph constructor 로 대체해야 합니다.
