@@ -20,6 +20,7 @@ class NetworkBasedNeighbors:
 
         # set reference data
         self.X = X
+        self.n_data = n_data
 
         if self.verbose:
             print('Indexing ...')
