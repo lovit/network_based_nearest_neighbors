@@ -43,7 +43,7 @@ class NetworkBasedNeighbors:
 
     def search_neighbors(self, query, k=5, max_steps=10, converge=0.000001):
         dist, idxs, infos, process_time = self._search_neighbors_dev(
-            query, kmax_steps, converge)
+            query, k, max_steps, converge)
         return dist, idxs
 
     def _search_neighbors_dev(self, query, k=5, max_steps=10, converge=0.000001):
