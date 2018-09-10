@@ -49,6 +49,7 @@ Indexing
         n_nearest_neighbors=5, # number of nearest neighbors
         n_random_neighbors=5,  # number of random neighbors
         batch_size=500,        # indexing batch size
+        metric='euclidean',    # metric, possible all metric defined in scipy
         verbose=True           # verbose mode if True
     )
 
