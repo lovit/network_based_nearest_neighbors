@@ -6,12 +6,14 @@ from .utils import most_closest_points
 
 class NetworkBasedNeighbors:
     def __init__(self, X=None, n_nearest_neighbors=5,
-        n_random_neighbors=5, batch_size=500, verbose=True):
+        n_random_neighbors=5, batch_size=500,
+        metric='euclidean', verbose=True):
 
         self.n_nearest_neighbors = n_nearest_neighbors
         self.n_random_neighbors = n_random_neighbors
         self.batch_size = batch_size
         self.verbose = verbose
+        self.metric = metric
         self.buffer_factor = 3
 
         if X is not None:
@@ -32,7 +34,7 @@ class NetworkBasedNeighbors:
         # nearest neighbor indexing
         _, self.nn = most_closest_points(
             X, topk=num_nn+1, batch_size=self.batch_size,
-            verbose=self.verbose)
+            metric=self.metric, verbose=self.verbose)
         self.nn = self.nn[:,1:]
 
         # random neighbor indexing
@@ -60,7 +62,7 @@ class NetworkBasedNeighbors:
             )
 
             candi_dist = pairwise_distances(
-                query, self.X[candi_idxs]).reshape(-1)
+                query, self.X[candi_idxs], metric=self.metric).reshape(-1)
 
             args = candi_dist.argsort()[:buffer_size]
             idxs_ = candi_idxs[args]
